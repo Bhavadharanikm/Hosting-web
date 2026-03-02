@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monthly Performance Dashboard</title>
+    <title>Paradise Pointe  Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
@@ -19,45 +19,47 @@
             background: #0a0f1e;
             color: #ffffff;
             min-height: 100vh;
-            padding: 2rem;
             line-height: 1.6;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            padding: 24px;
         }
 
-        header {
+        /* Header */
+        .header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 32px;
+            padding: 40px 0;
         }
 
-        h1 {
-            color: #d4af37;
+        .header h1 {
             font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            color: #d4af37;
+            margin-bottom: 8px;
         }
 
-        .subtitle {
-            color: #94a3b8;
+        .header .date-range {
             font-size: 1.1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .tagline {
             color: #94a3b8;
-            font-size: 0.95rem;
-            font-weight: 300;
+            margin-bottom: 4px;
         }
 
+        .header .tagline {
+            font-size: 0.95rem;
+            color: #94a3b8;
+        }
+
+        /* Cards */
         .card {
             background: #1a2035;
             border: 1px solid #2a3150;
             border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            padding: 24px;
+            margin-bottom: 24px;
             transition: border-color 0.3s ease;
         }
 
@@ -65,63 +67,78 @@
             border-color: #d4af37;
         }
 
-        .card-title {
-            color: #d4af37;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+        .card-gold {
+            border-color: #d4af37;
         }
 
         .section-header {
-            color: #d4af37;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 600;
-            margin: 2.5rem 0 1.5rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #2a3150;
-        }
-
-        .overview-text {
-            color: #ffffff;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            line-height: 1.7;
-        }
-
-        .explainer-text {
-            color: #94a3b8;
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .performance-list {
-            list-style: none;
-        }
-
-        .performance-list li {
-            padding: 0.5rem 0;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .performance-list li::before {
-            content: "✓";
             color: #d4af37;
-            font-weight: 700;
+            margin-bottom: 16px;
         }
 
+        .funnel-label {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        /* Executive Summary Tiles */
+        .highlight-tiles {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 16px;
+        }
+
+        .highlight-tile {
+            background: #0a0f1e;
+            border-radius: 8px;
+            padding: 20px 16px;
+            text-align: center;
+        }
+
+        .highlight-tile .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 4px;
+        }
+
+        .highlight-tile .label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Bullet list */
+        .summary-bullets {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-bullets li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .summary-bullets li::before {
+            content: "•";
+            color: #d4af37;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Date Filter */
         .filter-bar {
-            background: #1a2035;
-            border: 1px solid #2a3150;
-            border-radius: 12px;
-            padding: 1rem 1.5rem;
-            margin-bottom: 2rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 16px;
             flex-wrap: wrap;
         }
 
@@ -133,158 +150,184 @@
         .filter-bar input[type="month"] {
             background: #0a0f1e;
             border: 1px solid #2a3150;
-            color: #ffffff;
-            padding: 0.5rem 1rem;
             border-radius: 6px;
+            padding: 8px 12px;
+            color: #ffffff;
             font-family: 'Inter', sans-serif;
         }
 
-        .filter-btn {
+        .filter-bar button {
             background: #d4af37;
             color: #0a0f1e;
             border: none;
-            padding: 0.5rem 1.5rem;
             border-radius: 6px;
+            padding: 10px 20px;
             font-weight: 600;
             cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s;
         }
 
-        .filter-btn:hover {
+        .filter-bar button:hover {
             opacity: 0.9;
         }
 
-        .chart-container {
-            position: relative;
-            height: 280px;
-            margin: 1rem 0;
-        }
-
-        .stats-row {
+        /* Stat Cards */
+        .stat-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
+            gap: 16px;
+            margin-bottom: 24px;
         }
 
         .stat-card {
             background: #0a0f1e;
             border: 1px solid #2a3150;
             border-radius: 8px;
-            padding: 1.25rem;
+            padding: 20px;
             text-align: center;
         }
 
-        .stat-value {
-            color: #d4af37;
-            font-size: 1.75rem;
+        .stat-card .stat-value {
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-
-        .stat-label {
-            color: #94a3b8;
-            font-size: 0.85rem;
-        }
-
-        .charts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .notes-timeline {
-            margin-top: 1rem;
-        }
-
-        .note-item {
-            background: #0a0f1e;
-            border-left: 3px solid #d4af37;
-            padding: 1rem 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .note-month {
             color: #d4af37;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 4px;
         }
 
-        .note-text {
+        .stat-card .stat-label {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-card .stat-sublabel {
+            font-size: 0.7rem;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        /* Overview text */
+        .overview-text {
             color: #94a3b8;
             font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
         }
 
-        footer {
+        /* Explainer */
+        .explainer {
+            border-left: 3px solid #2a3150;
+            padding-left: 16px;
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+        }
+
+        /* Charts */
+        .chart-container {
+            height: 280px;
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .chart-wrapper {
+            background: #0a0f1e;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .chart-title {
+            font-size: 0.85rem;
+            color: #ffffff;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
             text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid #2a3150;
-            color: #94a3b8;
+            padding: 40px 0;
+            color: #64748b;
             font-size: 0.85rem;
         }
 
-        .pdf-btn {
+        /* PDF Button */
+        .pdf-button {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
+            bottom: 24px;
+            right: 24px;
             background: #d4af37;
             color: #0a0f1e;
             border: none;
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
+            border-radius: 8px;
+            padding: 14px 24px;
             font-weight: 600;
+            font-size: 0.95rem;
             cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
             z-index: 1000;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .pdf-btn:hover {
+        .pdf-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 6px 24px rgba(212, 175, 55, 0.4);
         }
 
-        .no-data {
-            color: #94a3b8;
-            font-style: italic;
-            text-align: center;
-            padding: 2rem;
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .highlight-tiles {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
+        @media (max-width: 768px) {
+            .highlight-tiles {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .stat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Print Styles */
         @media print {
             body {
                 background: #ffffff;
                 color: #000000;
-                padding: 1rem;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
             }
 
-            .pdf-btn,
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .pdf-button,
             .filter-bar {
                 display: none !important;
             }
 
             .card {
-                background: #f8f9fa;
-                border: 1px solid #dee2e6;
                 break-inside: avoid;
                 page-break-inside: avoid;
-            }
-
-            .section-header {
-                color: #b8860b;
-                break-after: avoid;
-            }
-
-            .card-title {
-                color: #b8860b;
-            }
-
-            .stat-value {
-                color: #b8860b;
+                border: 1px solid #cccccc;
+                margin-bottom: 16px;
+                background: #ffffff;
             }
 
             .chart-container {
@@ -292,232 +335,189 @@
                 page-break-inside: avoid;
             }
 
-            canvas {
-                max-width: 100% !important;
-                height: auto !important;
+            .header h1 {
+                color: #b8960c;
             }
 
-            h1 {
-                color: #b8860b;
+            .section-header {
+                color: #b8960c;
+            }
+
+            .highlight-tile .value,
+            .stat-card .stat-value {
+                color: #b8960c;
             }
 
             .overview-text,
-            .performance-list li {
-                color: #000000;
+            .summary-bullets li,
+            .explainer {
+                color: #333333;
             }
 
-            .explainer-text,
-            .subtitle,
-            .tagline,
-            .stat-label {
-                color: #666666;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 1rem;
-            }
-
-            h1 {
-                font-size: 1.75rem;
-            }
-
-            .charts-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .filter-bar {
-                flex-direction: column;
-                align-items: stretch;
+            @page {
+                margin: 1cm;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Client Performance Dashboard</h1>
-            <p class="subtitle">November 2025 — January 2026</p>
-            <p class="tagline">Monthly Performance Dashboard</p>
+        <!-- Header -->
+        <header class="header">
+            <h1>Paradise Pointe</h1>
+            <div class="date-range">November 2025 — January 2026</div>
+            <div class="tagline">Paradise Pointe Monthly Performance Dashboard</div>
         </header>
 
-        <div class="card">
-            <h2 class="card-title">✨ What's Going Well This Period</h2>
-            <ul class="performance-list">
-                <li>Revenue up 253% year-over-year with January 2026 reaching $450,818</li>
-                <li>Direct booking split improved from 69% to 81%, maximizing profit margins</li>
-                <li>Lead pipeline grew 46% over 3 months, reaching 19,311 total leads</li>
-                <li>Social following increased 56% to 120,599 total followers</li>
-                <li>Content views nearly doubled, reaching 3.9M views in January 2026</li>
-                <li>Perfect 10/10 client satisfaction maintained throughout the period</li>
+        <!-- Executive Summary -->
+        <section class="card card-gold" id="executive-summary">
+            <h2 class="section-header">Executive Summary</h2>
+            <div class="highlight-tiles" id="highlight-tiles">
+                <!-- Tiles populated by JS -->
+            </div>
+        </section>
+
+        <section class="card" id="summary-bullets-card">
+            <ul class="summary-bullets" id="summary-bullets">
+                <!-- Bullets populated by JS -->
             </ul>
-        </div>
+        </section>
 
-        <div class="filter-bar" id="filterBar">
-            <label for="fromDate">From:</label>
-            <input type="month" id="fromDate" value="2025-11">
-            <label for="toDate">To:</label>
-            <input type="month" id="toDate" value="2026-01">
-            <button class="filter-btn" onclick="applyFilter()">Apply Filter</button>
-        </div>
+        <!-- Date Filter -->
+        <section class="card" id="filter-section">
+            <div class="filter-bar">
+                <label for="filter-from">From:</label>
+                <input type="month" id="filter-from" value="2025-11">
+                <label for="filter-to">To:</label>
+                <input type="month" id="filter-to" value="2026-01">
+                <button onclick="applyFilter()">Apply Filter</button>
+            </div>
+        </section>
 
-        <!-- Revenue Section -->
-        <h2 class="section-header">Revenue Performance</h2>
-        <div class="card">
-            <p class="overview-text">
-                Revenue performance has been exceptional this period, with total booking revenue climbing from $238,038 in November to an impressive $450,818 in January 2026—a remarkable 89% increase over just three months. Compared to the same months last year, revenue is up significantly, with January showing a staggering 389% year-over-year improvement. The direct booking split has also strengthened beautifully, rising from 69% to 81%, meaning more revenue is flowing directly to you without OTA commissions eating into profits.
-            </p>
-            <p class="explainer-text">
-                Total Revenue is all booking income for the period. Direct Booking Revenue is money earned without OTA commission — a higher direct split means more profit per booking.
-            </p>
-            <div class="chart-container">
-                <canvas id="revenueChart"></canvas>
-            </div>
-            <div class="stats-row">
-                <div class="stat-card">
-                    <div class="stat-value">81.0%</div>
-                    <div class="stat-label">Latest Direct Booking Split</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">+389%</div>
-                    <div class="stat-label">Revenue vs Last Year (Jan)</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">Jan 2026</div>
-                    <div class="stat-label">Peak Revenue Month ($450,818)</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Website & Ads Section -->
-        <h2 class="section-header">Website & Advertising</h2>
-        <div class="card">
-            <p class="overview-text">
-                Ad spend has been deployed efficiently across the period, increasing modestly from $2,093 to $2,465 while driving substantial website traffic growth—doubling from 25,000 to 50,000 visitors. Cost per lead improved from $1.21 to $1.04 in December, demonstrating excellent budget optimization. The advertising investment is delivering strong returns, with cost per booking remaining competitive at $23-$30 range during the tracked months.
-            </p>
-            <p class="explainer-text">
-                Ad Spend is the total monthly budget deployed. Cost Per Lead and Cost Per Booking show how efficiently that budget is converting into real enquiries and reservations.
-            </p>
-            <div class="chart-container">
-                <canvas id="adsChart"></canvas>
-            </div>
-            <div class="stats-row">
-                <div class="stat-card">
-                    <div class="stat-value">$1.04</div>
-                    <div class="stat-label">Latest Cost Per Lead (Dec)</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">$30</div>
-                    <div class="stat-label">Latest Cost Per Booking (Dec)</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">50,000</div>
-                    <div class="stat-label">Latest Website Traffic</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Leads Section -->
-        <h2 class="section-header">Lead Generation</h2>
-        <div class="card">
-            <p class="overview-text">
-                Lead generation has been firing on all cylinders, with new leads increasing from 2,030 in November to an impressive 3,695 in January—an 82% jump in monthly lead acquisition. The total lead pipeline has grown substantially from 13,262 to 19,311 contacts, representing a 46% expansion over the three-month period. Lead growth rates have remained strong and consistent at 16-25% month over month.
-            </p>
-            <p class="explainer-text">
-                New Leads are people who made contact or enquired this month. Total Leads is the cumulative pipeline. Lead Growth % shows how fast the pipeline is expanding.
-            </p>
-            <div class="charts-grid">
+        <!-- Section A: Content Views -->
+        <section class="card" id="section-views">
+            <h2 class="section-header">👁️ Content Views — Top of Funnel</h2>
+            <div class="funnel-label">How many people are discovering your content?</div>
+            <p class="overview-text" id="views-overview"></p>
+            <div class="explainer">Views measure how many times your content was seen across platforms — a leading indicator of brand awareness. More views means more people are entering your world.</div>
+            <div class="stat-grid" id="views-stats"></div>
+            <div class="chart-wrapper">
+                <div class="chart-title">Monthly Views by Platform</div>
                 <div class="chart-container">
-                    <canvas id="newLeadsChart"></canvas>
-                </div>
-                <div class="chart-container">
-                    <canvas id="totalLeadsChart"></canvas>
+                    <canvas id="views-chart"></canvas>
                 </div>
             </div>
-            <div class="stats-row">
-                <div class="stat-card">
-                    <div class="stat-value">16.0%</div>
-                    <div class="stat-label">Latest Lead Growth %</div>
-                </div>
-            </div>
-        </div>
+        </section>
 
-        <!-- Followers Section -->
-        <h2 class="section-header">Social Media Followers</h2>
-        <div class="card">
-            <p class="overview-text">
-                Social media presence has expanded dramatically, with total followers growing 56% from 77,207 to 120,599 across all platforms. Facebook remains the dominant platform with 83,173 followers, followed by Instagram at 35,629 and TikTok at 1,797. The December growth spike of 32% was particularly impressive, showing strong momentum that continued into January with an 18% increase.
-            </p>
-            <p class="explainer-text">
-                Follower counts show how the brand audience is growing across Instagram, Facebook, and TikTok. Growth % shows momentum month over month.
-            </p>
-            <div class="charts-grid">
-                <div class="chart-container">
-                    <canvas id="followersBarChart"></canvas>
+        <!-- Section B: Social Followers -->
+        <section class="card" id="section-followers">
+            <h2 class="section-header">👥 Social Media Followers — Top of Funnel</h2>
+            <div class="funnel-label">How many people are choosing to follow your brand?</div>
+            <p class="overview-text" id="followers-overview"></p>
+            <div class="explainer">Follower counts show your growing audience across Instagram, Facebook, and TikTok. Each new follower is someone who chose to stay connected with your brand.</div>
+            <div class="stat-grid" id="followers-stats"></div>
+            <div class="chart-grid">
+                <div class="chart-wrapper">
+                    <div class="chart-title">Followers by Platform</div>
+                    <div class="chart-container">
+                        <canvas id="followers-bar-chart"></canvas>
+                    </div>
                 </div>
-                <div class="chart-container">
-                    <canvas id="followersDonutChart"></canvas>
-                </div>
-            </div>
-            <div class="stats-row">
-                <div class="stat-card">
-                    <div class="stat-value">18.0%</div>
-                    <div class="stat-label">Latest Follower Growth %</div>
+                <div class="chart-wrapper">
+                    <div class="chart-title">Latest Month Platform Split</div>
+                    <div class="chart-container">
+                        <canvas id="followers-donut-chart"></canvas>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Views Section -->
-        <h2 class="section-header">Content Views</h2>
-        <div class="card">
-            <p class="overview-text">
-                Content visibility has surged impressively, with total views climbing from 2.04 million in November to 3.92 million in January—a 92% increase in reach. Facebook continues to drive the majority of views at 3.5 million in January, with Instagram contributing 402,399 views and TikTok adding 15,000 views. The December growth spike of 40.75% demonstrates the content strategy is resonating strongly with audiences.
-            </p>
-            <p class="explainer-text">
-                Views measure how many times content was seen across platforms — a leading indicator of brand awareness and reach.
-            </p>
-            <div class="chart-container">
-                <canvas id="viewsChart"></canvas>
-            </div>
-            <div class="stats-row">
-                <div class="stat-card">
-                    <div class="stat-value">36.1%</div>
-                    <div class="stat-label">Latest Total View Growth %</div>
+        <!-- Section C: Website Traffic -->
+        <section class="card" id="section-website">
+            <h2 class="section-header">🌐 Website Traffic — Top of Funnel</h2>
+            <div class="funnel-label">How many people are visiting your website?</div>
+            <p class="overview-text" id="website-overview"></p>
+            <div class="explainer">Website Traffic shows how many people visited your site each month. This is where awareness turns into active interest.</div>
+            <div class="stat-grid" id="website-stats"></div>
+            <div class="chart-wrapper">
+                <div class="chart-title">Monthly Website Traffic</div>
+                <div class="chart-container">
+                    <canvas id="website-chart"></canvas>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <footer>
-            <p>Generated on <span id="currentDate"></span></p>
-            <p>Data provided by Makenna Moran — Account Management Team</p>
+        <!-- Section D: Lead Generation -->
+        <section class="card" id="section-leads">
+            <h2 class="section-header">🎯 Lead Generation — Middle of Funnel</h2>
+            <div class="funnel-label">How many people are raising their hand?</div>
+            <p class="overview-text" id="leads-overview"></p>
+            <div class="explainer">New Leads are people who made a real enquiry this month. Total Leads is your full pipeline. Lead Growth % shows how fast your audience of interested guests is expanding.</div>
+            <div class="stat-grid" id="leads-stats"></div>
+            <div class="chart-grid">
+                <div class="chart-wrapper">
+                    <div class="chart-title">New Leads per Month</div>
+                    <div class="chart-container">
+                        <canvas id="leads-bar-chart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <div class="chart-title">Total Lead Pipeline Growth</div>
+                    <div class="chart-container">
+                        <canvas id="leads-line-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section E: Revenue & Bookings -->
+        <section class="card" id="section-revenue">
+            <h2 class="section-header">💰 Revenue & Bookings — Bottom of Funnel</h2>
+            <div class="funnel-label">How many people actually booked?</div>
+            <p class="overview-text" id="revenue-overview"></p>
+            <div class="explainer">Total Revenue is all booking income for the period. Direct Booking Revenue is earnings without OTA commission — the higher your direct split, the more profit stays with you.</div>
+            <div class="stat-grid" id="revenue-stats"></div>
+            <div class="chart-grid">
+                <div class="chart-wrapper">
+                    <div class="chart-title">Total Revenue vs Last Year</div>
+                    <div class="chart-container">
+                        <canvas id="revenue-line-chart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <div class="chart-title">Direct Booking Split Comparison</div>
+                    <div class="chart-container">
+                        <canvas id="revenue-bar-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Generated on <span id="generated-date"></span></p>
+            <p>Data provided by HiddenGem Media</p>
         </footer>
     </div>
 
-    <button class="pdf-btn" onclick="window.print()">⬇ Download PDF</button>
+    <!-- PDF Button -->
+    <button class="pdf-button" onclick="window.print()">⬇ Download PDF</button>
 
     <script>
-        // Set current date
-        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-
-        // Chart.js global defaults
-        Chart.defaults.color = '#ffffff';
-        Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.1)';
-
-        // Data store
-        const rawData = [
+        // Raw Data
+        const clientData = [
             {
                 timeline: "November 2025",
-                monthKey: "2025-11",
-                totalRevenue: 238038,
+                month: "2025-11",
                 lyTotalRevenue: 100781,
+                lyDirectRevenue: 54093,
+                lyDirectSplit: 0.54,
+                totalRevenue: 238038,
+                directRevenue: 163299,
                 directSplit: 0.69,
                 websiteTraffic: 25000,
                 adSpend: 2093,
+                costPerFollower: 0.29,
                 costPerLead: 1.21,
                 costPerBooking: 23,
                 newLeads: 2030,
@@ -532,16 +532,21 @@
                 fbViews: 1878040,
                 tiktokViews: 10000,
                 totalViews: 2044611,
-                viewGrowth: 0.124
+                viewGrowth: 0.124,
+                notes: ""
             },
             {
                 timeline: "December 2025",
-                monthKey: "2025-12",
-                totalRevenue: 234951,
+                month: "2025-12",
                 lyTotalRevenue: 69738,
+                lyDirectRevenue: 25928,
+                lyDirectSplit: 0.37,
+                totalRevenue: 234951,
+                directRevenue: 178325,
                 directSplit: 0.76,
                 websiteTraffic: 35000,
                 adSpend: 2365,
+                costPerFollower: 0.28,
                 costPerLead: 1.04,
                 costPerBooking: 30,
                 newLeads: 2432,
@@ -556,16 +561,21 @@
                 fbViews: 2519788,
                 tiktokViews: 12000,
                 totalViews: 2877891,
-                viewGrowth: 0.4075
+                viewGrowth: 0.4075,
+                notes: ""
             },
             {
                 timeline: "January 2026",
-                monthKey: "2026-01",
-                totalRevenue: 450818,
+                month: "2026-01",
                 lyTotalRevenue: 92166,
+                lyDirectRevenue: 27295,
+                lyDirectSplit: 0.30,
+                totalRevenue: 450818,
+                directRevenue: 365144,
                 directSplit: 0.81,
                 websiteTraffic: 50000,
                 adSpend: 2465,
+                costPerFollower: null,
                 costPerLead: null,
                 costPerBooking: null,
                 newLeads: 3695,
@@ -580,74 +590,168 @@
                 fbViews: 3498830,
                 tiktokViews: 15000,
                 totalViews: 3916229,
-                viewGrowth: 0.3608
+                viewGrowth: 0.3608,
+                notes: ""
             }
         ];
 
-        let filteredData = [...rawData];
-        let charts = {};
+        let filteredData = [...clientData];
+        let chartInstances = {};
 
-        function formatCurrency(value) {
-            return '$' + value.toLocaleString('en-US');
+        // Utility Functions
+        function formatDollar(n) {
+            if (n === null || n === undefined || n === '') return '—';
+            return '$' + Math.round(n).toLocaleString('en-US');
         }
 
-        function formatPercent(value) {
-            return (value * 100).toFixed(1) + '%';
+        function formatPercent(n) {
+            if (n === null || n === undefined || n === '') return '—';
+            return (n * 100).toFixed(1) + '%';
         }
 
-        function formatNumber(value) {
-            return value.toLocaleString('en-US');
+        function formatNumber(n) {
+            if (n === null || n === undefined || n === '') return '—';
+            return Math.round(n).toLocaleString('en-US');
         }
 
-        function getFilteredData() {
-            const fromDate = document.getElementById('fromDate').value;
-            const toDate = document.getElementById('toDate').value;
-            
-            return rawData.filter(d => {
-                return d.monthKey >= fromDate && d.monthKey <= toDate;
-            });
+        function formatLargeNumber(n) {
+            if (n === null || n === undefined || n === '') return '—';
+            if (n >= 1000000) {
+                return (n / 1000000).toFixed(1) + 'M';
+            } else if (n >= 1000) {
+                return (n / 1000).toFixed(1) + 'K';
+            }
+            return n.toLocaleString('en-US');
         }
 
+        function parseMonthValue(monthStr) {
+            const [year, month] = monthStr.split('-').map(Number);
+            return new Date(year, month - 1);
+        }
+
+        function destroyChart(chartId) {
+            if (chartInstances[chartId]) {
+                chartInstances[chartId].destroy();
+                delete chartInstances[chartId];
+            }
+        }
+
+        // Chart.js Global Defaults
+        Chart.defaults.color = '#94a3b8';
+        Chart.defaults.borderColor = 'rgba(255,255,255,0.08)';
+
+        // Apply Filter
         function applyFilter() {
-            filteredData = getFilteredData();
-            renderAllCharts();
+            const fromVal = document.getElementById('filter-from').value;
+            const toVal = document.getElementById('filter-to').value;
+
+            const fromDate = parseMonthValue(fromVal);
+            const toDate = parseMonthValue(toVal);
+
+            filteredData = clientData.filter(d => {
+                const date = parseMonthValue(d.month);
+                return date >= fromDate && date <= toDate;
+            });
+
+            if (filteredData.length === 0) {
+                alert('No data for selected period');
+                filteredData = [...clientData];
+            }
+
+            renderDashboard();
         }
 
-        function renderAllCharts() {
-            // Destroy existing charts
-            Object.values(charts).forEach(chart => chart.destroy());
-            charts = {};
+        // Render Executive Summary
+        function renderExecutiveSummary() {
+            const latest = filteredData[filteredData.length - 1];
+            const first = filteredData[0];
 
-            const labels = filteredData.map(d => d.timeline);
+            // Calculate highlights
+            const totalRevenueGrowth = ((latest.totalRevenue - first.totalRevenue) / first.totalRevenue);
+            const totalViewsSum = filteredData.reduce((sum, d) => sum + d.totalViews, 0);
+            const ttlLeads = latest.ttlLeads;
+            const latestDirectSplit = latest.directSplit;
+            const latestFollowers = latest.ttlFollowers;
+            const revenueVsLY = ((latest.totalRevenue - latest.lyTotalRevenue) / latest.lyTotalRevenue);
 
-            // Revenue Chart
-            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
-            charts.revenue = new Chart(revenueCtx, {
-                type: 'line',
+            const tiles = [
+                { value: formatDollar(latest.totalRevenue), label: 'Latest Revenue' },
+                { value: formatPercent(latestDirectSplit), label: 'Direct Booking Split' },
+                { value: formatLargeNumber(totalViewsSum), label: 'Total Views (Period)' },
+                { value: formatNumber(latestFollowers), label: 'Total Followers' },
+                { value: formatNumber(ttlLeads), label: 'Leads in Pipeline' },
+                { value: '+' + formatPercent(revenueVsLY), label: 'Revenue vs LY' }
+            ];
+
+            const tilesContainer = document.getElementById('highlight-tiles');
+            tilesContainer.innerHTML = tiles.map(t => `
+                <div class="highlight-tile">
+                    <div class="value">${t.value}</div>
+                    <div class="label">${t.label}</div>
+                </div>
+            `).join('');
+
+            // Bullets
+            const bullets = [
+                `Total Revenue reached ${formatDollar(latest.totalRevenue)} in ${latest.timeline}, up ${formatPercent(revenueVsLY)} compared to the same period last year.`,
+                `Direct Booking Split climbed to ${formatPercent(latestDirectSplit)}, maximising profit retention.`,
+                `Content views surpassed ${formatLargeNumber(totalViewsSum)} across all platforms over the reporting period.`,
+                `The lead pipeline grew to ${formatNumber(ttlLeads)} total leads, with ${formatNumber(latest.newLeads)} new leads added in ${latest.timeline}.`,
+                `Social following expanded to ${formatNumber(latestFollowers)} across Instagram, Facebook, and TikTok.`,
+                `Website traffic doubled from ${formatNumber(first.websiteTraffic)} to ${formatNumber(latest.websiteTraffic)} over the period.`
+            ];
+
+            document.getElementById('summary-bullets').innerHTML = bullets.map(b => `<li>${b}</li>`).join('');
+        }
+
+        // Render Views Section
+        function renderViewsSection() {
+            const latest = filteredData[filteredData.length - 1];
+
+            // Overview
+            const overviewText = `Content views reached ${formatLargeNumber(latest.totalViews)} in ${latest.timeline}, reflecting a ${formatPercent(latest.viewGrowth)} increase from the previous month. Facebook continues to drive the majority of impressions with ${formatLargeNumber(latest.fbViews)} views, followed by Instagram at ${formatLargeNumber(latest.igViews)} and TikTok contributing ${formatLargeNumber(latest.tiktokViews)}. The consistent upward trajectory in views indicates strong and growing brand awareness across all platforms.`;
+            document.getElementById('views-overview').textContent = overviewText;
+
+            // Stats
+            const statsHtml = `
+                <div class="stat-card">
+                    <div class="stat-value">${formatLargeNumber(latest.totalViews)}</div>
+                    <div class="stat-label">Total Views</div>
+                    <div class="stat-sublabel">${latest.timeline}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">+${formatPercent(latest.viewGrowth)}</div>
+                    <div class="stat-label">View Growth</div>
+                    <div class="stat-sublabel">${latest.timeline}</div>
+                </div>
+            `;
+            document.getElementById('views-stats').innerHTML = statsHtml;
+
+            // Chart
+            destroyChart('views-chart');
+            const ctx = document.getElementById('views-chart').getContext('2d');
+            chartInstances['views-chart'] = new Chart(ctx, {
+                type: 'bar',
                 data: {
-                    labels: labels,
+                    labels: filteredData.map(d => d.timeline),
                     datasets: [
                         {
-                            label: 'Total Booking Revenue',
-                            data: filteredData.map(d => d.totalRevenue),
-                            borderColor: '#d4af37',
-                            backgroundColor: 'rgba(212, 175, 55, 0.1)',
-                            fill: true,
-                            tension: 0.3,
-                            borderWidth: 3,
-                            pointRadius: 5,
-                            pointBackgroundColor: '#d4af37'
+                            label: 'IG Views',
+                            data: filteredData.map(d => d.igViews),
+                            backgroundColor: '#d4af37',
+                            borderRadius: 4
                         },
                         {
-                            label: 'LY Total Booking Revenue',
-                            data: filteredData.map(d => d.lyTotalRevenue),
-                            borderColor: '#3b82f6',
-                            backgroundColor: 'transparent',
-                            borderDash: [5, 5],
-                            tension: 0.3,
-                            borderWidth: 2,
-                            pointRadius: 4,
-                            pointBackgroundColor: '#3b82f6'
+                            label: 'FB Views',
+                            data: filteredData.map(d => d.fbViews),
+                            backgroundColor: '#3b82f6',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'TikTok Views',
+                            data: filteredData.map(d => d.tiktokViews),
+                            backgroundColor: '#14b8a6',
+                            borderRadius: 4
                         }
                     ]
                 },
@@ -655,70 +759,77 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        title: {
-                            display: true,
-                            text: 'Total Revenue vs Last Year',
-                            color: '#ffffff',
-                            font: { size: 14, weight: '600' }
-                        },
                         legend: {
-                            position: 'bottom',
-                            labels: { color: '#94a3b8' }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return context.dataset.label + ': ' + formatCurrency(context.raw);
-                                }
-                            }
+                            labels: { color: '#ffffff' }
                         }
                     },
                     scales: {
+                        x: {
+                            ticks: { color: '#94a3b8' },
+                            grid: { color: 'rgba(255,255,255,0.08)' }
+                        },
                         y: {
-                            beginAtZero: true,
                             ticks: {
                                 color: '#94a3b8',
                                 callback: function(value) {
-                                    return '$' + (value / 1000) + 'K';
+                                    return formatLargeNumber(value);
                                 }
                             },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                        },
-                        x: {
-                            ticks: { color: '#94a3b8' },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                            grid: { color: 'rgba(255,255,255,0.08)' }
                         }
                     }
                 }
             });
+        }
 
-            // Ads Chart (Combo)
-            const adsCtx = document.getElementById('adsChart').getContext('2d');
-            charts.ads = new Chart(adsCtx, {
+        // Render Followers Section
+        function renderFollowersSection() {
+            const latest = filteredData[filteredData.length - 1];
+
+            // Overview
+            const overviewText = `The social audience expanded to ${formatNumber(latest.ttlFollowers)} total followers in ${latest.timeline}, representing ${formatPercent(latest.followerGrowth)} month-over-month growth. Facebook remains the dominant platform with ${formatNumber(latest.fbFollowers)} followers, while Instagram continues strong growth at ${formatNumber(latest.igFollowers)}. TikTok adds ${formatNumber(latest.tiktokFollowers)} to the mix, providing diversified reach across demographics.`;
+            document.getElementById('followers-overview').textContent = overviewText;
+
+            // Stats
+            const statsHtml = `
+                <div class="stat-card">
+                    <div class="stat-value">${formatNumber(latest.ttlFollowers)}</div>
+                    <div class="stat-label">Total Followers</div>
+                    <div class="stat-sublabel">${latest.timeline}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">+${formatPercent(latest.followerGrowth)}</div>
+                    <div class="stat-label">Follower Growth</div>
+                    <div class="stat-sublabel">${latest.timeline}</div>
+                </div>
+            `;
+            document.getElementById('followers-stats').innerHTML = statsHtml;
+
+            // Bar Chart
+            destroyChart('followers-bar-chart');
+            const barCtx = document.getElementById('followers-bar-chart').getContext('2d');
+            chartInstances['followers-bar-chart'] = new Chart(barCtx, {
                 type: 'bar',
                 data: {
-                    labels: labels,
+                    labels: filteredData.map(d => d.timeline),
                     datasets: [
                         {
-                            type: 'bar',
-                            label: 'Ad Spend',
-                            data: filteredData.map(d => d.adSpend),
-                            backgroundColor: 'rgba(212, 175, 55, 0.8)',
-                            borderColor: '#d4af37',
-                            borderWidth: 1,
-                            yAxisID: 'y'
+                            label: 'Instagram',
+                            data: filteredData.map(d => d.igFollowers),
+                            backgroundColor: '#d4af37',
+                            borderRadius: 4
                         },
                         {
-                            type: 'line',
-                            label: 'Website Traffic',
-                            data: filteredData.map(d => d.websiteTraffic),
-                            borderColor: '#3b82f6',
-                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                            tension: 0.3,
-                            borderWidth: 3,
-                            pointRadius: 5,
-                            pointBackgroundColor: '#3b82f6',
-                            yAxisID: 'y1'
+                            label: 'Facebook',
+                            data: filteredData.map(d => d.fbFollowers),
+                            backgroundColor: '#3b82f6',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'TikTok',
+                            data: filteredData.map(d => d.tiktokFollowers),
+                            backgroundColor: '#a855f7',
+                            borderRadius: 4
                         }
                     ]
                 },
@@ -726,97 +837,225 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        title: {
-                            display: true,
-                            text: 'Ad Spend vs Website Traffic',
-                            color: '#ffffff',
-                            font: { size: 14, weight: '600' }
-                        },
                         legend: {
-                            position: 'bottom',
-                            labels: { color: '#94a3b8' }
+                            labels: { color: '#ffffff' }
                         }
                     },
                     scales: {
-                        y: {
-                            type: 'linear',
-                            position: 'left',
-                            beginAtZero: true,
-                            ticks: {
-                                color: '#d4af37',
-                                callback: function(value) {
-                                    return '$' + value;
-                                }
-                            },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                        },
-                        y1: {
-                            type: 'linear',
-                            position: 'right',
-                            beginAtZero: true,
-                            ticks: {
-                                color: '#3b82f6',
-                                callback: function(value) {
-                                    return (value / 1000) + 'K';
-                                }
-                            },
-                            grid: { drawOnChartArea: false }
-                        },
                         x: {
                             ticks: { color: '#94a3b8' },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                            grid: { color: 'rgba(255,255,255,0.08)' }
+                        },
+                        y: {
+                            ticks: {
+                                color: '#94a3b8',
+                                callback: function(value) {
+                                    return formatLargeNumber(value);
+                                }
+                            },
+                            grid: { color: 'rgba(255,255,255,0.08)' }
                         }
                     }
                 }
             });
 
-            // New Leads Chart
-            const newLeadsCtx = document.getElementById('newLeadsChart').getContext('2d');
-            charts.newLeads = new Chart(newLeadsCtx, {
-                type: 'bar',
+            // Donut Chart
+            destroyChart('followers-donut-chart');
+            const donutCtx = document.getElementById('followers-donut-chart').getContext('2d');
+            chartInstances['followers-donut-chart'] = new Chart(donutCtx, {
+                type: 'doughnut',
                 data: {
-                    labels: labels,
+                    labels: ['Instagram', 'Facebook', 'TikTok'],
                     datasets: [{
-                        label: 'New Leads',
-                        data: filteredData.map(d => d.newLeads),
-                        backgroundColor: 'rgba(212, 175, 55, 0.8)',
-                        borderColor: '#d4af37',
-                        borderWidth: 1,
-                        borderRadius: 6
+                        data: [latest.igFollowers, latest.fbFollowers, latest.tiktokFollowers],
+                        backgroundColor: ['#d4af37', '#3b82f6', '#a855f7'],
+                        borderWidth: 0
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        title: {
-                            display: true,
-                            text: 'New Leads per Month',
-                            color: '#ffffff',
-                            font: { size: 14, weight: '600' }
-                        },
-                        legend: { display: false }
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: '#ffffff' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Render Website Section
+        function renderWebsiteSection() {
+            const latest = filteredData[filteredData.length - 1];
+            const first = filteredData[0];
+            const trafficGrowth = ((latest.websiteTraffic - first.websiteTraffic) / first.websiteTraffic);
+
+            // Overview
+            const overviewText = `Website traffic reached ${formatNumber(latest.websiteTraffic)} visits in ${latest.timeline}, reflecting a ${formatPercent(trafficGrowth)} increase over the reporting period. This consistent growth in site visitors indicates effective top-of-funnel activity converting awareness into genuine interest. The ad spend of ${formatDollar(latest.adSpend)} continues to drive efficient traffic acquisition.`;
+            document.getElementById('website-overview').textContent = overviewText;
+
+            // Stats
+            const statsHtml = `
+                <div class="stat-card">
+                    <div class="stat-value">${formatNumber(latest.websiteTraffic)}</div>
+                    <div class="stat-label">Website Traffic</div>
+                    <div class="stat-sublabel">${latest.timeline}</div>
+                </div>
+            `;
+            document.getElementById('website-stats').innerHTML = statsHtml;
+
+            // Chart
+            destroyChart('website-chart');
+            const ctx = document.getElementById('website-chart').getContext('2d');
+            chartInstances['website-chart'] = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: filteredData.map(d => d.timeline),
+                    datasets: [{
+                        label: 'Website Traffic',
+                        data: filteredData.map(d => d.websiteTraffic),
+                        borderColor: '#d4af37',
+                        backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        pointBackgroundColor: '#d4af37',
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#ffffff' }
+                        }
                     },
                     scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: { color: '#94a3b8' },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                        },
                         x: {
                             ticks: { color: '#94a3b8' },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                            grid: { color: 'rgba(255,255,255,0.08)' }
+                        },
+                        y: {
+                            ticks: {
+                                color: '#94a3b8',
+                                callback: function(value) {
+                                    return formatLargeNumber(value);
+                                }
+                            },
+                            grid: { color: 'rgba(255,255,255,0.08)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Render Leads Section
+        function renderLeadsSection() {
+            const latest = filteredData[filteredData.length - 1];
+
+            // Find most recent month with cost data
+            let costPerLeadMonth = null;
+            let costPerLeadValue = null;
+            let costPerFollowerMonth = null;
+            let costPerFollowerValue = null;
+
+            for (let i = filteredData.length - 1; i >= 0; i--) {
+                if (costPerLeadValue === null && filteredData[i].costPerLead !== null && filteredData[i].costPerLead !== '') {
+                    costPerLeadValue = filteredData[i].costPerLead;
+                    costPerLeadMonth = filteredData[i].timeline;
+                }
+                if (costPerFollowerValue === null && filteredData[i].costPerFollower !== null && filteredData[i].costPerFollower !== '') {
+                    costPerFollowerValue = filteredData[i].costPerFollower;
+                    costPerFollowerMonth = filteredData[i].timeline;
+                }
+            }
+
+            // Overview
+            let overviewText = `Lead generation continues strong momentum with ${formatNumber(latest.newLeads)} new leads added in ${latest.timeline}, bringing the total pipeline to ${formatNumber(latest.ttlLeads)} qualified prospects. Lead growth of ${formatPercent(latest.leadGrowth)} demonstrates sustained interest from potential guests.`;
+            if (costPerLeadValue !== null) {
+                overviewText += ` Cost per lead efficiency held at ${formatDollar(costPerLeadValue)} as of ${costPerLeadMonth}.`;
+            }
+            if (costPerFollowerValue !== null) {
+                overviewText += ` Cost per follower remained efficient at ${formatDollar(costPerFollowerValue)} as of ${costPerFollowerMonth}.`;
+            }
+            document.getElementById('leads-overview').textContent = overviewText;
+
+            // Stats
+            let statsHtml = `
+                <div class="stat-card">
+                    <div class="stat-value">+${formatPercent(latest.leadGrowth)}</div>
+                    <div class="stat-label">Lead Growth</div>
+                    <div class="stat-sublabel">${latest.timeline}</div>
+                </div>
+            `;
+            if (costPerLeadValue !== null) {
+                statsHtml += `
+                    <div class="stat-card">
+                        <div class="stat-value">${formatDollar(costPerLeadValue)}</div>
+                        <div class="stat-label">Cost Per Lead</div>
+                        <div class="stat-sublabel">${costPerLeadMonth}</div>
+                    </div>
+                `;
+            }
+            if (costPerFollowerValue !== null) {
+                statsHtml += `
+                    <div class="stat-card">
+                        <div class="stat-value">${formatDollar(costPerFollowerValue)}</div>
+                        <div class="stat-label">Cost Per Follower</div>
+                        <div class="stat-sublabel">${costPerFollowerMonth}</div>
+                    </div>
+                `;
+            }
+            document.getElementById('leads-stats').innerHTML = statsHtml;
+
+            // Bar Chart - New Leads
+            destroyChart('leads-bar-chart');
+            const barCtx = document.getElementById('leads-bar-chart').getContext('2d');
+            chartInstances['leads-bar-chart'] = new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: filteredData.map(d => d.timeline),
+                    datasets: [{
+                        label: 'New Leads',
+                        data: filteredData.map(d => d.newLeads),
+                        backgroundColor: '#d4af37',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#ffffff' }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#94a3b8' },
+                            grid: { color: 'rgba(255,255,255,0.08)' }
+                        },
+                        y: {
+                            ticks: {
+                                color: '#94a3b8',
+                                callback: function(value) {
+                                    return formatNumber(value);
+                                }
+                            },
+                            grid: { color: 'rgba(255,255,255,0.08)' }
                         }
                     }
                 }
             });
 
-            // Total Leads Chart
-            const totalLeadsCtx = document.getElementById('totalLeadsChart').getContext('2d');
-            charts.totalLeads = new Chart(totalLeadsCtx, {
+            // Line Chart - TTL Leads
+            destroyChart('leads-line-chart');
+            const lineCtx = document.getElementById('leads-line-chart').getContext('2d');
+            chartInstances['leads-line-chart'] = new Chart(lineCtx, {
                 type: 'line',
                 data: {
-                    labels: labels,
+                    labels: filteredData.map(d => d.timeline),
                     datasets: [{
                         label: 'Total Leads',
                         data: filteredData.map(d => d.ttlLeads),
@@ -824,228 +1063,224 @@
                         backgroundColor: 'rgba(20, 184, 166, 0.1)',
                         fill: true,
                         tension: 0.3,
-                        borderWidth: 3,
-                        pointRadius: 5,
-                        pointBackgroundColor: '#14b8a6'
+                        pointBackgroundColor: '#14b8a6',
+                        pointRadius: 5
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        title: {
-                            display: true,
-                            text: 'Total Lead Pipeline Growth',
-                            color: '#ffffff',
-                            font: { size: 14, weight: '600' }
-                        },
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            ticks: {
-                                color: '#94a3b8',
-                                callback: function(value) {
-                                    return (value / 1000).toFixed(1) + 'K';
-                                }
-                            },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                        },
-                        x: {
-                            ticks: { color: '#94a3b8' },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                        }
-                    }
-                }
-            });
-
-            // Followers Bar Chart
-            const followersBarCtx = document.getElementById('followersBarChart').getContext('2d');
-            charts.followersBar = new Chart(followersBarCtx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'Instagram',
-                            data: filteredData.map(d => d.igFollowers),
-                            backgroundColor: 'rgba(212, 175, 55, 0.8)',
-                            borderColor: '#d4af37',
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Facebook',
-                            data: filteredData.map(d => d.fbFollowers),
-                            backgroundColor: 'rgba(59, 130, 246, 0.8)',
-                            borderColor: '#3b82f6',
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'TikTok',
-                            data: filteredData.map(d => d.tiktokFollowers),
-                            backgroundColor: 'rgba(168, 85, 247, 0.8)',
-                            borderColor: '#a855f7',
-                            borderWidth: 1
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Followers by Platform',
-                            color: '#ffffff',
-                            font: { size: 14, weight: '600' }
-                        },
                         legend: {
-                            position: 'bottom',
-                            labels: { color: '#94a3b8' }
+                            labels: { color: '#ffffff' }
                         }
                     },
                     scales: {
+                        x: {
+                            ticks: { color: '#94a3b8' },
+                            grid: { color: 'rgba(255,255,255,0.08)' }
+                        },
                         y: {
-                            beginAtZero: true,
                             ticks: {
                                 color: '#94a3b8',
                                 callback: function(value) {
-                                    return (value / 1000) + 'K';
+                                    return formatNumber(value);
                                 }
                             },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                        },
-                        x: {
-                            ticks: { color: '#94a3b8' },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                        }
-                    }
-                }
-            });
-
-            // Followers Donut Chart (latest month)
-            const latestData = filteredData[filteredData.length - 1];
-            const followersDonutCtx = document.getElementById('followersDonutChart').getContext('2d');
-            charts.followersDonut = new Chart(followersDonutCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Instagram', 'Facebook', 'TikTok'],
-                    datasets: [{
-                        data: [latestData.igFollowers, latestData.fbFollowers, latestData.tiktokFollowers],
-                        backgroundColor: ['#d4af37', '#3b82f6', '#a855f7'],
-                        borderColor: '#1a2035',
-                        borderWidth: 3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Platform Split (' + latestData.timeline + ')',
-                            color: '#ffffff',
-                            font: { size: 14, weight: '600' }
-                        },
-                        legend: {
-                            position: 'bottom',
-                            labels: { color: '#94a3b8' }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                    const percentage = ((context.raw / total) * 100).toFixed(1);
-                                    return context.label + ': ' + formatNumber(context.raw) + ' (' + percentage + '%)';
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Views Stacked Area Chart
-            const viewsCtx = document.getElementById('viewsChart').getContext('2d');
-            charts.views = new Chart(viewsCtx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'Instagram Views',
-                            data: filteredData.map(d => d.igViews),
-                            borderColor: '#d4af37',
-                            backgroundColor: 'rgba(212, 175, 55, 0.3)',
-                            fill: true,
-                            tension: 0.3,
-                            borderWidth: 2
-                        },
-                        {
-                            label: 'Facebook Views',
-                            data: filteredData.map(d => d.fbViews),
-                            borderColor: '#3b82f6',
-                            backgroundColor: 'rgba(59, 130, 246, 0.3)',
-                            fill: true,
-                            tension: 0.3,
-                            borderWidth: 2
-                        },
-                        {
-                            label: 'TikTok Views',
-                            data: filteredData.map(d => d.tiktokViews),
-                            borderColor: '#14b8a6',
-                            backgroundColor: 'rgba(20, 184, 166, 0.3)',
-                            fill: true,
-                            tension: 0.3,
-                            borderWidth: 2
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Views by Platform',
-                            color: '#ffffff',
-                            font: { size: 14, weight: '600' }
-                        },
-                        legend: {
-                            position: 'bottom',
-                            labels: { color: '#94a3b8' }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return context.dataset.label + ': ' + formatNumber(context.raw);
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            stacked: true,
-                            beginAtZero: true,
-                            ticks: {
-                                color: '#94a3b8',
-                                callback: function(value) {
-                                    return (value / 1000000).toFixed(1) + 'M';
-                                }
-                            },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                        },
-                        x: {
-                            ticks: { color: '#94a3b8' },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                            grid: { color: 'rgba(255,255,255,0.08)' }
                         }
                     }
                 }
             });
         }
 
+        // Render Revenue Section
+        function renderRevenueSection() {
+            const latest = filteredData[filteredData.length - 1];
+            const revenueVsLY = ((latest.totalRevenue - latest.lyTotalRevenue) / latest.lyTotalRevenue);
+
+            // Find peak revenue month
+            let peakMonth = filteredData[0];
+            filteredData.forEach(d => {
+                if (d.totalRevenue > peakMonth.totalRevenue) {
+                    peakMonth = d;
+                }
+            });
+
+            // Find most recent month with cost per booking data
+            let costPerBookingMonth = null;
+            let costPerBookingValue = null;
+            for (let i = filteredData.length - 1; i >= 0; i--) {
+                if (filteredData[i].costPerBooking !== null && filteredData[i].costPerBooking !== '') {
+                    costPerBookingValue = filteredData[i].costPerBooking;
+                    costPerBookingMonth = filteredData[i].timeline;
+                    break;
+                }
+            }
+
+            // Overview
+            let overviewText = `Revenue performance reached ${formatDollar(latest.totalRevenue)} in ${latest.timeline}, representing a ${formatPercent(revenueVsLY)} increase compared to the same period last year. The direct booking split improved to ${formatPercent(latest.directSplit)}, significantly outperforming last year's ${formatPercent(latest.lyDirectSplit)} — meaning more revenue is retained without OTA commission fees. Peak revenue of ${formatDollar(peakMonth.totalRevenue)} was achieved in ${peakMonth.timeline}.`;
+            if (costPerBookingValue !== null) {
+                overviewText += ` Cost per booking stood at ${formatDollar(costPerBookingValue)} as of ${costPerBookingMonth}.`;
+            }
+            document.getElementById('revenue-overview').textContent = overviewText;
+
+            // Stats
+            let statsHtml = `
+                <div class="stat-card">
+                    <div class="stat-value">${formatPercent(latest.directSplit)}</div>
+                    <div class="stat-label">Direct Booking Split</div>
+                    <div class="stat-sublabel">${latest.timeline}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">+${formatPercent(revenueVsLY)}</div>
+                    <div class="stat-label">Revenue vs LY</div>
+                    <div class="stat-sublabel">${latest.timeline}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${formatDollar(peakMonth.totalRevenue)}</div>
+                    <div class="stat-label">Peak Revenue</div>
+                    <div class="stat-sublabel">${peakMonth.timeline}</div>
+                </div>
+            `;
+            if (costPerBookingValue !== null) {
+                statsHtml += `
+                    <div class="stat-card">
+                        <div class="stat-value">${formatDollar(costPerBookingValue)}</div>
+                        <div class="stat-label">Cost Per Booking</div>
+                        <div class="stat-sublabel">${costPerBookingMonth}</div>
+                    </div>
+                `;
+            }
+            document.getElementById('revenue-stats').innerHTML = statsHtml;
+
+            // Line Chart - Revenue vs LY
+            destroyChart('revenue-line-chart');
+            const lineCtx = document.getElementById('revenue-line-chart').getContext('2d');
+            chartInstances['revenue-line-chart'] = new Chart(lineCtx, {
+                type: 'line',
+                data: {
+                    labels: filteredData.map(d => d.timeline),
+                    datasets: [
+                        {
+                            label: 'Total Revenue',
+                            data: filteredData.map(d => d.totalRevenue),
+                            borderColor: '#d4af37',
+                            backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                            fill: false,
+                            tension: 0.3,
+                            pointBackgroundColor: '#d4af37',
+                            pointRadius: 5,
+                            borderWidth: 3
+                        },
+                        {
+                            label: 'LY Total Revenue',
+                            data: filteredData.map(d => d.lyTotalRevenue),
+                            borderColor: '#3b82f6',
+                            borderDash: [5, 5],
+                            fill: false,
+                            tension: 0.3,
+                            pointBackgroundColor: '#3b82f6',
+                            pointRadius: 5,
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#ffffff' }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#94a3b8' },
+                            grid: { color: 'rgba(255,255,255,0.08)' }
+                        },
+                        y: {
+                            ticks: {
+                                color: '#94a3b8',
+                                callback: function(value) {
+                                    return formatDollar(value);
+                                }
+                            },
+                            grid: { color: 'rgba(255,255,255,0.08)' }
+                        }
+                    }
+                }
+            });
+
+            // Bar Chart - Direct Booking Split
+            destroyChart('revenue-bar-chart');
+            const barCtx = document.getElementById('revenue-bar-chart').getContext('2d');
+            chartInstances['revenue-bar-chart'] = new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: filteredData.map(d => d.timeline),
+                    datasets: [
+                        {
+                            label: 'Direct Split %',
+                            data: filteredData.map(d => d.directSplit * 100),
+                            backgroundColor: '#d4af37',
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'LY Direct Split %',
+                            data: filteredData.map(d => d.lyDirectSplit * 100),
+                            backgroundColor: '#3b82f6',
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#ffffff' }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#94a3b8' },
+                            grid: { color: 'rgba(255,255,255,0.08)' }
+                        },
+                        y: {
+                            max: 100,
+                            ticks: {
+                                color: '#94a3b8',
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            },
+                            grid: { color: 'rgba(255,255,255,0.08)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Render full dashboard
+        function renderDashboard() {
+            renderExecutiveSummary();
+            renderViewsSection();
+            renderFollowersSection();
+            renderWebsiteSection();
+            renderLeadsSection();
+            renderRevenueSection();
+        }
+
+        // Set generated date
+        document.getElementById('generated-date').textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
         // Initial render
-        renderAllCharts();
+        renderDashboard();
     </script>
 </body>
 </html>
